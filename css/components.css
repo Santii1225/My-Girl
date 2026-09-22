@@ -125,14 +125,14 @@
   left: 50%;
   top: 35%;
   font-size: 30px;
-  color: var(--color-gold-shade);
+  color: var(--color-heart);
   pointer-events: none;
   animation: rise 1.1s var(--ease-out) forwards;
   z-index: 7;
 }
 .heart-pop--big {
   font-size: 60px;
-  color: var(--color-ribbon-deep);
+  color: var(--color-heart-deep);
   filter: drop-shadow(0 4px 10px rgba(63, 74, 30, 0.25));
 }
 
@@ -185,8 +185,8 @@
 }
 
 .water-drop {
+  /* left/top are set inline in JS, tracking the can's live position */
   position: absolute;
-  top: -6px;
   width: 8px;
   height: 11px;
   background: linear-gradient(180deg, var(--color-water) 0%, var(--color-water-deep) 100%);
@@ -198,11 +198,11 @@
   animation: dropFall 0.7s var(--ease-out) forwards;
 }
 
-/* the large can that travels out over the bouquet, waters it, and returns */
+/* the large can that travels above the bouquet, waters it, and returns */
 .can-rig {
   position: absolute;
   left: 50%;
-  bottom: 0;
+  top: -8%;
   width: clamp(38px, 7vw, 52px);
   height: clamp(38px, 7vw, 52px);
   transform-origin: 78% 68%;

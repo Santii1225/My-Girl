@@ -11,9 +11,8 @@ import { spawnHeart } from "./interactions.js";
 const STORAGE_KEY = "girasoles-water-count";
 const MAX_WATERS = 6;
 const GROWTH_MAX = 0.4; // flowers grow up to 40% larger at full care
-const JOURNEY_DURATION = 2600; // ms, must match --can-journey in animations.css
-const FLOWER_OFFSETS = [-72, -36, 0, 36, 72]; // matches the --off values on each flower
-const DROP_TIMES = [0.52, 0.99, 1.46, 1.92, 2.29]; // seconds into the journey, one per flower
+const JOURNEY_DURATION = 2600; // ms, must match the canJourney animation duration
+const DROP_TIMES = [0.3, 0.7, 1.1, 1.5, 1.9, 2.3]; // seconds into the journey when a drop falls
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -42,10 +41,17 @@ function applyGrowth(bouquet, count) {
   bouquet.style.setProperty("--growth", growth.toFixed(3));
 }
 
-function spawnDropAt(bouquet, offsetPx) {
+/** Spawns a drop at the can's real, current on-screen position (its spout). */
+function spawnDropFromRig(rig, bouquet) {
+  const rigRect = rig.getBoundingClientRect();
+  const bouquetRect = bouquet.getBoundingClientRect();
+  const x = rigRect.left + rigRect.width * 0.78 - bouquetRect.left;
+  const y = rigRect.top + rigRect.height * 0.7 - bouquetRect.top;
+
   const drop = document.createElement("span");
   drop.className = "water-drop";
-  drop.style.left = `calc(50% + ${offsetPx}px)`;
+  drop.style.left = `${x}px`;
+  drop.style.top = `${y}px`;
   bouquet.appendChild(drop);
   drop.addEventListener("animationend", () => drop.remove(), { once: true });
 }
@@ -65,8 +71,8 @@ function pourOverBouquet(rig, bouquet, reduced) {
       return;
     }
 
-    DROP_TIMES.forEach((t, i) => {
-      setTimeout(() => spawnDropAt(bouquet, FLOWER_OFFSETS[i]), t * 1000);
+    DROP_TIMES.forEach((t) => {
+      setTimeout(() => spawnDropFromRig(rig, bouquet), t * 1000);
     });
 
     rig.classList.remove("is-active");
