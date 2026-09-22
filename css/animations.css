@@ -66,3 +66,42 @@
     opacity: 0;
   }
 }
+
+@keyframes bloomPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes pourTilt {
+  0% {
+    transform: rotate(0deg);
+  }
+  35% {
+    transform: rotate(-28deg);
+  }
+  70% {
+    transform: rotate(-18deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes dropFall {
+  0% {
+    opacity: 0;
+    transform: translateY(0) rotate(45deg);
+  }
+  15% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(110px) rotate(45deg);
+  }
+}

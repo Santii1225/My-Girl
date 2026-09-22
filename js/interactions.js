@@ -1,10 +1,10 @@
 /**
- * Click microinteraction: tapping a flower sends up a small heart.
+ * Click microinteraction: tapping a flower sends up a heart.
  */
 
-function spawnHeart(target) {
+export function spawnHeart(target, { big = false } = {}) {
   const heart = document.createElement("span");
-  heart.className = "heart-pop";
+  heart.className = big ? "heart-pop heart-pop--big" : "heart-pop";
   heart.textContent = "♥";
   heart.setAttribute("aria-hidden", "true");
   target.appendChild(heart);

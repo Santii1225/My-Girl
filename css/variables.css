@@ -20,6 +20,9 @@
   --color-ribbon: #5c6b2e;
   --color-ribbon-deep: #3f4a1e;
 
+  --color-water: #bfe0f0;
+  --color-water-deep: #8fc4de;
+
   /* ---- Type ---- */
   --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --font-ui: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -56,4 +59,7 @@
   --ribbon-delay: 3.3s;
   --message-delay: 4s;
   --hint-delay: 4.5s;
+
+  /* ---- Care (set dynamically by js/watering.js) ---- */
+  --growth: 1;
 }
