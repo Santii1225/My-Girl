@@ -63,6 +63,27 @@
   width: 100%;
   height: 100%;
   overflow: visible;
+  transform-origin: bottom center;
+  animation: idleSway 6.2s ease-in-out infinite;
+  animation-delay: calc(var(--d) + 1.2s);
+}
+/* slight per-flower variation so the bouquet doesn't sway as one block */
+.bouquet-flower:nth-child(1) svg {
+  animation-duration: 5.6s;
+}
+.bouquet-flower:nth-child(2) svg {
+  animation-duration: 6.6s;
+  animation-delay: calc(var(--d) + 1.6s);
+}
+.bouquet-flower:nth-child(3) svg {
+  animation-duration: 5.9s;
+}
+.bouquet-flower:nth-child(4) svg {
+  animation-duration: 6.9s;
+  animation-delay: calc(var(--d) + 1.4s);
+}
+.bouquet-flower:nth-child(5) svg {
+  animation-duration: 6.3s;
 }
 
 .stem {

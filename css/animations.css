@@ -74,6 +74,22 @@
   }
 }
 
+@keyframes idleSway {
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+  25% {
+    transform: rotate(-2.2deg) translateY(-3px);
+  }
+  50% {
+    transform: rotate(0.6deg) translateY(0);
+  }
+  75% {
+    transform: rotate(2.4deg) translateY(-2px);
+  }
+}
+
 @keyframes bloomPulse {
   0%,
   100% {
