@@ -1,7 +1,9 @@
 /**
- * The watering can: each press grows the bouquet a little more. Once it has
- * been watered enough times, the sunflowers settle into a gentle breathing
- * pulse and send up hearts to show they're well cared for.
+ * The watering can: pressing it sends a can on a visible journey out over
+ * the bouquet, pouring on each flower in turn, then back to rest. Once that
+ * finishes, the bouquet grows a little more; once it has been watered
+ * enough times, the sunflowers settle into a gentle breathing pulse and
+ * send up big hearts to show they're well cared for.
  */
 
 import { spawnHeart } from "./interactions.js";
@@ -9,6 +11,13 @@ import { spawnHeart } from "./interactions.js";
 const STORAGE_KEY = "girasoles-water-count";
 const MAX_WATERS = 6;
 const GROWTH_MAX = 0.4; // flowers grow up to 40% larger at full care
+const JOURNEY_DURATION = 2600; // ms, must match --can-journey in animations.css
+const FLOWER_OFFSETS = [-72, -36, 0, 36, 72]; // matches the --off values on each flower
+const DROP_TIMES = [0.52, 0.99, 1.46, 1.92, 2.29]; // seconds into the journey, one per flower
+
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
 
 function readCount() {
   try {
@@ -33,15 +42,12 @@ function applyGrowth(bouquet, count) {
   bouquet.style.setProperty("--growth", growth.toFixed(3));
 }
 
-function spawnDrops(bouquet) {
-  for (let i = 0; i < 3; i++) {
-    const drop = document.createElement("span");
-    drop.className = "water-drop";
-    drop.style.left = `${42 + i * 8}%`;
-    drop.style.animationDelay = `${i * 0.08}s`;
-    bouquet.appendChild(drop);
-    drop.addEventListener("animationend", () => drop.remove(), { once: true });
-  }
+function spawnDropAt(bouquet, offsetPx) {
+  const drop = document.createElement("span");
+  drop.className = "water-drop";
+  drop.style.left = `calc(50% + ${offsetPx}px)`;
+  bouquet.appendChild(drop);
+  drop.addEventListener("animationend", () => drop.remove(), { once: true });
 }
 
 function celebrate(bouquet) {
@@ -51,26 +57,59 @@ function celebrate(bouquet) {
   });
 }
 
+/** Runs the can's pour-over-the-bouquet journey and resolves once it's done. */
+function pourOverBouquet(rig, bouquet, reduced) {
+  return new Promise((resolve) => {
+    if (reduced) {
+      resolve();
+      return;
+    }
+
+    DROP_TIMES.forEach((t, i) => {
+      setTimeout(() => spawnDropAt(bouquet, FLOWER_OFFSETS[i]), t * 1000);
+    });
+
+    rig.classList.remove("is-active");
+    void rig.offsetWidth; // restart the animation on repeated presses
+    rig.classList.add("is-active");
+
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      rig.classList.remove("is-active");
+      resolve();
+    };
+    rig.addEventListener("animationend", finish, { once: true });
+    // safety net in case the animationend event is ever missed
+    setTimeout(finish, JOURNEY_DURATION + 150);
+  });
+}
+
 export function initWatering(root = document) {
   const can = root.querySelector("#waterCan");
+  const rig = root.querySelector("#canRig");
   const bouquet = root.querySelector("#bouquet");
-  if (!can || !bouquet) return;
+  if (!can || !rig || !bouquet) return;
 
   let count = readCount();
+  let busy = false;
   applyGrowth(bouquet, count);
   if (count >= MAX_WATERS) bouquet.classList.add("bouquet--loved");
 
-  can.addEventListener("click", () => {
+  can.addEventListener("click", async () => {
+    if (busy) return;
+    busy = true;
+    can.disabled = true;
+
+    const reduced = prefersReducedMotion();
     const wasLoved = count >= MAX_WATERS;
+
+    await pourOverBouquet(rig, bouquet, reduced);
+
     count = Math.min(count + 1, MAX_WATERS);
     writeCount(count);
     applyGrowth(bouquet, count);
-    spawnDrops(bouquet);
-
-    can.classList.remove("is-pouring");
-    // eslint-disable-next-line no-unused-expressions
-    can.offsetWidth; // restart the tilt animation on repeated clicks
-    can.classList.add("is-pouring");
 
     if (count >= MAX_WATERS) {
       bouquet.classList.add("bouquet--loved");
@@ -82,5 +121,8 @@ export function initWatering(root = document) {
         if (lucky) spawnHeart(lucky, { big: true });
       }
     }
+
+    can.disabled = false;
+    busy = false;
   });
 }

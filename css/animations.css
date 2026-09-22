@@ -92,6 +92,36 @@
   }
 }
 
+@keyframes canJourney {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0.8) rotate(0deg);
+  }
+  6% {
+    opacity: 1;
+    transform: translate(-50%, -30px) scale(0.95) rotate(-8deg);
+  }
+  20% {
+    transform: translate(calc(-50% - 100px), -210px) scale(1) rotate(-36deg);
+  }
+  38% {
+    transform: translate(calc(-50% - 50px), -230px) scale(1) rotate(-34deg);
+  }
+  56% {
+    transform: translate(-50%, -230px) scale(1) rotate(-34deg);
+  }
+  74% {
+    transform: translate(calc(-50% + 50px), -220px) scale(1) rotate(-32deg);
+  }
+  88% {
+    transform: translate(calc(-50% + 100px), -70px) scale(0.95) rotate(-10deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0.75) rotate(0deg);
+  }
+}
+
 @keyframes dropFall {
   0% {
     opacity: 0;
