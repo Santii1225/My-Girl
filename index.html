@@ -1,287 +1,126 @@
-<title>Girasoles a la Distancia</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,400;1,9..144,600&family=Karla:wght@400;500&family=Caveat:wght@500;700&display=swap">
-<style>
-  :root{
-    --bg:#EEF1DF;
-    --surface:#FFFDF5;
-    --ink:#2B3324;
-    --ink-soft:#5B6350;
-    --gold:#E7A93A;
-    --gold-deep:#C97F1E;
-    --rose:#D65B6B;
-    --rose-deep:#B23F52;
-    --leaf:#4F7A3D;
-    --leaf-deep:#3A5C2C;
-    --sky-top:#33507A;
-    --sky-bottom:#F0A857;
-    --sun-glow:#FFE1A6;
-    --paper:#D8B98A;
-    --paper-deep:#B9986A;
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --bg:#141A12; --surface:#1E2419; --ink:#EDE8D8; --ink-soft:#B7BCA6;
-      --gold:#F0BB4E; --gold-deep:#D69432; --rose:#E37B89; --rose-deep:#C85E70;
-      --leaf:#6FA657; --leaf-deep:#4A7638; --sky-top:#0D1420; --sky-bottom:#4A2E1F;
-      --sun-glow:#FFCB78; --paper:#6B5637; --paper-deep:#4E3E27;
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg:#141A12; --surface:#1E2419; --ink:#EDE8D8; --ink-soft:#B7BCA6;
-    --gold:#F0BB4E; --gold-deep:#D69432; --rose:#E37B89; --rose-deep:#C85E70;
-    --leaf:#6FA657; --leaf-deep:#4A7638; --sky-top:#0D1420; --sky-bottom:#4A2E1F;
-    --sun-glow:#FFCB78; --paper:#6B5637; --paper-deep:#4E3E27;
-  }
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Girasoles a la Distancia</title>
+  <meta name="description" content="Una carta de amor con un ramo digital de girasoles para cuando la distancia se sienta larga." />
 
-  *{box-sizing:border-box;}
-  body{background:var(--bg); color:var(--ink); font-family:'Karla', 'Helvetica Neue', Arial, sans-serif;}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+  />
 
-  .scene{
-    position:relative;
-    overflow:hidden;
-    background:linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 100%);
-    padding-block: clamp(36px, 7vw, 56px) clamp(40px, 8vw, 64px);
-  }
-  .sun{
-    position:absolute; top:6%; left:50%; transform:translateX(-50%);
-    width:min(50vw, 300px); height:min(50vw, 300px); border-radius:50%;
-    background: radial-gradient(circle, var(--sun-glow) 0%, rgba(255,225,166,0.32) 45%, rgba(255,225,166,0) 72%);
-    pointer-events:none;
-  }
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
 
-  .bouquet{
-    position:relative;
-    z-index:2;
-    height: clamp(340px, 58vw, 520px);
-    max-width: 560px;
-    margin: 0 auto;
-  }
+  <div class="scene">
+    <div class="bouquet" id="bouquet">
+      <div class="paper-wrap" aria-hidden="true"></div>
 
-  .paper-wrap{
-    position:absolute;
-    left:50%; bottom:0;
-    width: 62%;
-    height: 46%;
-    transform: translateX(-50%) scale(0.92);
-    transform-origin: bottom center;
-    background: linear-gradient(180deg, var(--paper) 0%, var(--paper-deep) 100%);
-    clip-path: polygon(12% 0%, 88% 0%, 50% 100%);
-    z-index:1;
-    opacity:0;
-    animation: wrapIn 0.9s ease-out forwards;
-  }
-  @keyframes wrapIn{ to{ opacity:1; transform:translateX(-50%) scale(1); } }
+      <button class="bouquet-flower" style="--angle:-24deg; --off:-72px; --scale:0.82;" type="button" aria-label="Girasol, toca para enviar un abrazo">
+        <svg viewBox="0 0 100 150"><use href="#sunflower"></use></svg>
+      </button>
+      <button class="bouquet-flower" style="--angle:-12deg; --off:-36px; --scale:0.93;" type="button" aria-label="Girasol, toca para enviar un abrazo">
+        <svg viewBox="0 0 100 150"><use href="#sunflower"></use></svg>
+      </button>
+      <button class="bouquet-flower" style="--angle:0deg; --off:0px; --scale:1.06;" type="button" aria-label="Girasol, toca para enviar un abrazo">
+        <svg viewBox="0 0 100 150"><use href="#sunflower"></use></svg>
+      </button>
+      <button class="bouquet-flower" style="--angle:12deg; --off:36px; --scale:0.93;" type="button" aria-label="Girasol, toca para enviar un abrazo">
+        <svg viewBox="0 0 100 150"><use href="#sunflower"></use></svg>
+      </button>
+      <button class="bouquet-flower" style="--angle:24deg; --off:72px; --scale:0.82;" type="button" aria-label="Girasol, toca para enviar un abrazo">
+        <svg viewBox="0 0 100 150"><use href="#sunflower"></use></svg>
+      </button>
 
-  .bouquet-flower{
-    position:absolute;
-    bottom: 8%;
-    left:50%;
-    background:none; border:0; padding:0; cursor:pointer;
-    transform-origin: bottom center;
-    transform: translateX(-50%) translateX(var(--off)) rotate(var(--angle)) scale(var(--scale));
-    -webkit-tap-highlight-color: transparent;
-  }
-  .bouquet-flower:focus-visible{ outline: 2px solid var(--sun-glow); outline-offset: 6px; border-radius: 10px; }
-  .bouquet-flower svg{ display:block; overflow:visible; }
-  .bouquet-flower.sunflower{ width: clamp(78px, 15vw, 118px); height: clamp(230px, 42vw, 340px); z-index:2; }
-  .bouquet-flower.tulip{ width: clamp(56px, 11vw, 82px); height: clamp(170px, 32vw, 250px); z-index:3; }
+      <svg class="ribbon" viewBox="0 0 70 50" aria-hidden="true">
+        <path d="M35 25 C 20 8 4 12 4 25 C 4 38 20 42 35 25 Z" fill="var(--color-ribbon)"/>
+        <path d="M35 25 C 50 8 66 12 66 25 C 66 38 50 42 35 25 Z" fill="var(--color-ribbon)"/>
+        <circle cx="35" cy="25" r="7" fill="var(--color-ribbon-deep)"/>
+      </svg>
+    </div>
 
-  .stem{ stroke-dasharray:1; stroke-dashoffset:1; animation: draw 0.7s ease-out forwards; animation-delay: var(--d); }
-  .leaves{ opacity:0; transform-box: fill-box; transform-origin:50% 50%; animation: leafIn 0.5s ease-out forwards; animation-delay: calc(var(--d) + 0.25s); }
-  .bloom{ opacity:0; transform-box: fill-box; transform-origin: center; animation: bloomIn 0.6s cubic-bezier(.34,1.56,.64,1) forwards; animation-delay: calc(var(--d) + 0.5s); }
-
-  @keyframes draw{ to{ stroke-dashoffset:0; } }
-  @keyframes leafIn{ from{ opacity:0; transform:scale(0.5); } to{ opacity:1; transform:scale(1); } }
-  @keyframes bloomIn{ from{ opacity:0; transform:scale(0.3) rotate(-8deg); } to{ opacity:1; transform:scale(1) rotate(0); } }
-
-  .ribbon{
-    position:absolute; left:50%; bottom:6%;
-    width: clamp(46px, 9vw, 70px);
-    transform: translateX(-50%) scale(0) rotate(-6deg);
-    transform-origin:center;
-    opacity:0;
-    z-index:4;
-    animation: ribbonIn 0.55s cubic-bezier(.34,1.56,.64,1) forwards;
-    animation-delay: 3.6s;
-  }
-  @keyframes ribbonIn{ to{ opacity:1; transform: translateX(-50%) scale(1) rotate(-6deg); } }
-
-  @media (prefers-reduced-motion: reduce){
-    .paper-wrap, .stem, .leaves, .bloom, .ribbon, .message{ animation: none !important; opacity:1 !important; transform:none !important; stroke-dashoffset:0 !important; }
-    .paper-wrap{ transform: translateX(-50%) !important; }
-    .ribbon{ transform: translateX(-50%) rotate(-6deg) !important; }
-  }
-
-  .heart-pop{
-    position:absolute; left:50%; top:35%;
-    font-size:18px; color: var(--rose);
-    pointer-events:none;
-    animation: rise 1.1s ease-out forwards;
-    z-index:6;
-  }
-  @keyframes rise{
-    from{ transform: translate(-50%, 0) scale(0.6); opacity:0; }
-    20%{ opacity:1; }
-    to{ transform: translate(-50%, -60px) scale(1.05); opacity:0; }
-  }
-
-  .hint{
-    text-align:center; font-size:0.78rem; letter-spacing:0.04em;
-    color:#FFF2D8; opacity:0; position:relative; z-index:2;
-    animation: hintIn 0.6s ease-out forwards; animation-delay: 4.2s;
-  }
-  @keyframes hintIn{ to{ opacity:0.75; } }
-  @media (prefers-reduced-motion: reduce){ .hint{ animation:none !important; opacity:0.75 !important; } }
-
-  .page{ max-width: 640px; margin:0 auto; padding: 0 20px; }
-
-  .message{
-    background: var(--surface);
-    border-radius: 18px;
-    padding: clamp(28px, 6vw, 46px) clamp(22px, 6vw, 44px);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 12px 32px -18px rgba(0,0,0,0.28);
-    margin: 36px auto 40px;
-    text-align:center;
-    opacity:0;
-    transform: translateY(16px);
-    animation: msgIn 0.9s ease-out forwards;
-    animation-delay: 4.3s;
-  }
-  @keyframes msgIn{ to{ opacity:1; transform:translateY(0); } }
-
-  .message p{
-    font-family:'Caveat', 'Segoe Script', cursive;
-    font-weight:500;
-    font-size: clamp(1.4rem, 3.6vw, 1.7rem);
-    line-height:1.5;
-    margin: 0 0 16px;
-    color: var(--ink);
-  }
-  .message .final{
-    margin-top: 10px;
-    font-weight:700;
-    font-size: clamp(2.4rem, 7vw, 3.4rem);
-    color: var(--rose-deep);
-    line-height:1.1;
-  }
-
-  footer{
-    text-align:center; font-size:0.82rem; color: var(--ink-soft);
-    padding-block: 4px 40px; letter-spacing:0.02em;
-  }
-</style>
-
-<div class="scene">
-  <div class="sun" aria-hidden="true"></div>
-
-  <div class="bouquet" id="bouquet">
-    <div class="paper-wrap" aria-hidden="true"></div>
-
-    <button class="bouquet-flower sunflower" style="--d:0s; --angle:-30deg; --off:-78px; --scale:0.82;" type="button" aria-label="Girasol, toca para enviar un abrazo">
-      <svg viewBox="0 0 100 150"><use href="#sunflower"></use></svg>
-    </button>
-    <button class="bouquet-flower sunflower" style="--d:0.3s; --angle:-15deg; --off:-42px; --scale:0.93;" type="button" aria-label="Girasol, toca para enviar un abrazo">
-      <svg viewBox="0 0 100 150"><use href="#sunflower"></use></svg>
-    </button>
-    <button class="bouquet-flower sunflower" style="--d:0.6s; --angle:0deg; --off:0px; --scale:1.06;" type="button" aria-label="Girasol, toca para enviar un abrazo">
-      <svg viewBox="0 0 100 150"><use href="#sunflower"></use></svg>
-    </button>
-    <button class="bouquet-flower sunflower" style="--d:0.9s; --angle:15deg; --off:42px; --scale:0.93;" type="button" aria-label="Girasol, toca para enviar un abrazo">
-      <svg viewBox="0 0 100 150"><use href="#sunflower"></use></svg>
-    </button>
-    <button class="bouquet-flower sunflower" style="--d:1.2s; --angle:30deg; --off:78px; --scale:0.82;" type="button" aria-label="Girasol, toca para enviar un abrazo">
-      <svg viewBox="0 0 100 150"><use href="#sunflower"></use></svg>
-    </button>
-
-    <button class="bouquet-flower tulip" style="--d:1.5s; --angle:-22deg; --off:-56px; --scale:1;" type="button" aria-label="Tulipán, toca para enviar un abrazo">
-      <svg viewBox="0 0 60 150"><use href="#tulip"></use></svg>
-    </button>
-    <button class="bouquet-flower tulip" style="--d:1.8s; --angle:-9deg; --off:-22px; --scale:1.05;" type="button" aria-label="Tulipán, toca para enviar un abrazo">
-      <svg viewBox="0 0 60 150"><use href="#tulip"></use></svg>
-    </button>
-    <button class="bouquet-flower tulip" style="--d:2.1s; --angle:9deg; --off:22px; --scale:1.05;" type="button" aria-label="Tulipán, toca para enviar un abrazo">
-      <svg viewBox="0 0 60 150"><use href="#tulip"></use></svg>
-    </button>
-    <button class="bouquet-flower tulip" style="--d:2.4s; --angle:22deg; --off:56px; --scale:1;" type="button" aria-label="Tulipán, toca para enviar un abrazo">
-      <svg viewBox="0 0 60 150"><use href="#tulip"></use></svg>
-    </button>
-
-    <svg class="ribbon" viewBox="0 0 70 50" aria-hidden="true">
-      <path d="M35 25 C 20 8 4 12 4 25 C 4 38 20 42 35 25 Z" fill="var(--rose)"/>
-      <path d="M35 25 C 50 8 66 12 66 25 C 66 38 50 42 35 25 Z" fill="var(--rose)"/>
-      <circle cx="35" cy="25" r="7" fill="var(--rose-deep)"/>
-    </svg>
+    <p class="hint">Toca una flor</p>
   </div>
 
-  <p class="hint">toca una flor</p>
-</div>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <radialGradient id="sunflowerCenter" cx="40%" cy="38%" r="65%">
+        <stop offset="0%" stop-color="var(--color-gold)"/>
+        <stop offset="55%" stop-color="var(--color-gold-deep)"/>
+        <stop offset="100%" stop-color="var(--color-gold-shade)"/>
+      </radialGradient>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <symbol id="sunflower" viewBox="0 0 100 150">
-      <path class="stem" pathLength="1" d="M50 150 C 48 118 52 88 50 60" stroke="var(--leaf)" stroke-width="5" fill="none" stroke-linecap="round"/>
-      <g class="leaves">
-        <path d="M50 112 C 30 107 18 119 15 133 C 34 133 46 123 50 112 Z" fill="var(--leaf)"/>
-        <path d="M50 94 C 70 89 82 99 86 111 C 68 113 55 104 50 94 Z" fill="var(--leaf)"/>
-      </g>
-      <g class="bloom">
-        <ellipse cx="50" cy="18" rx="9" ry="20" fill="var(--gold)" transform="rotate(0 50 45)"/>
-        <ellipse cx="50" cy="18" rx="9" ry="20" fill="var(--gold)" transform="rotate(45 50 45)"/>
-        <ellipse cx="50" cy="18" rx="9" ry="20" fill="var(--gold)" transform="rotate(90 50 45)"/>
-        <ellipse cx="50" cy="18" rx="9" ry="20" fill="var(--gold)" transform="rotate(135 50 45)"/>
-        <ellipse cx="50" cy="18" rx="9" ry="20" fill="var(--gold)" transform="rotate(180 50 45)"/>
-        <ellipse cx="50" cy="18" rx="9" ry="20" fill="var(--gold)" transform="rotate(225 50 45)"/>
-        <ellipse cx="50" cy="18" rx="9" ry="20" fill="var(--gold)" transform="rotate(270 50 45)"/>
-        <ellipse cx="50" cy="18" rx="9" ry="20" fill="var(--gold)" transform="rotate(315 50 45)"/>
-        <circle cx="50" cy="45" r="15" fill="var(--gold-deep)"/>
-        <circle cx="46" cy="41" r="6" fill="rgba(255,255,255,0.18)"/>
-        <circle cx="44" cy="42" r="1.3" fill="rgba(0,0,0,0.25)"/>
-        <circle cx="52" cy="40" r="1.3" fill="rgba(0,0,0,0.25)"/>
-        <circle cx="49" cy="47" r="1.3" fill="rgba(0,0,0,0.25)"/>
-        <circle cx="56" cy="46" r="1.3" fill="rgba(0,0,0,0.25)"/>
-        <circle cx="46" cy="50" r="1.3" fill="rgba(0,0,0,0.25)"/>
-      </g>
-    </symbol>
+      <symbol id="sunflower" viewBox="0 0 100 150">
+        <path class="stem" pathLength="1" d="M50 150 C 47 116 53 88 50 58" stroke="var(--color-olive)" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <g class="leaves">
+          <path d="M50 132 C 34 129 24 139 21 150 C 36 150 46 142 50 132 Z" fill="var(--color-olive)"/>
+          <path d="M50 120 C 66 117 76 126 79 137 C 65 139 54 130 50 120 Z" fill="var(--color-olive-light)"/>
+        </g>
+        <g class="bloom">
+          <g fill="var(--color-gold-deep)">
+            <ellipse cx="50" cy="13" rx="10" ry="24" transform="rotate(0 50 42)"/>
+            <ellipse cx="50" cy="13" rx="10" ry="24" transform="rotate(30 50 42)"/>
+            <ellipse cx="50" cy="13" rx="10" ry="24" transform="rotate(60 50 42)"/>
+            <ellipse cx="50" cy="13" rx="10" ry="24" transform="rotate(90 50 42)"/>
+            <ellipse cx="50" cy="13" rx="10" ry="24" transform="rotate(120 50 42)"/>
+            <ellipse cx="50" cy="13" rx="10" ry="24" transform="rotate(150 50 42)"/>
+            <ellipse cx="50" cy="13" rx="10" ry="24" transform="rotate(180 50 42)"/>
+            <ellipse cx="50" cy="13" rx="10" ry="24" transform="rotate(210 50 42)"/>
+            <ellipse cx="50" cy="13" rx="10" ry="24" transform="rotate(240 50 42)"/>
+            <ellipse cx="50" cy="13" rx="10" ry="24" transform="rotate(270 50 42)"/>
+            <ellipse cx="50" cy="13" rx="10" ry="24" transform="rotate(300 50 42)"/>
+            <ellipse cx="50" cy="13" rx="10" ry="24" transform="rotate(330 50 42)"/>
+          </g>
+          <g fill="var(--color-gold)">
+            <ellipse cx="50" cy="17" rx="7.5" ry="18" transform="rotate(15 50 42)"/>
+            <ellipse cx="50" cy="17" rx="7.5" ry="18" transform="rotate(45 50 42)"/>
+            <ellipse cx="50" cy="17" rx="7.5" ry="18" transform="rotate(75 50 42)"/>
+            <ellipse cx="50" cy="17" rx="7.5" ry="18" transform="rotate(105 50 42)"/>
+            <ellipse cx="50" cy="17" rx="7.5" ry="18" transform="rotate(135 50 42)"/>
+            <ellipse cx="50" cy="17" rx="7.5" ry="18" transform="rotate(165 50 42)"/>
+            <ellipse cx="50" cy="17" rx="7.5" ry="18" transform="rotate(195 50 42)"/>
+            <ellipse cx="50" cy="17" rx="7.5" ry="18" transform="rotate(225 50 42)"/>
+            <ellipse cx="50" cy="17" rx="7.5" ry="18" transform="rotate(255 50 42)"/>
+            <ellipse cx="50" cy="17" rx="7.5" ry="18" transform="rotate(285 50 42)"/>
+            <ellipse cx="50" cy="17" rx="7.5" ry="18" transform="rotate(315 50 42)"/>
+            <ellipse cx="50" cy="17" rx="7.5" ry="18" transform="rotate(345 50 42)"/>
+          </g>
+          <circle cx="50" cy="42" r="16" fill="url(#sunflowerCenter)"/>
+          <circle cx="45" cy="37" r="5.5" fill="rgba(255,255,255,0.2)"/>
+          <circle cx="43" cy="38" r="1.3" fill="rgba(60,36,10,0.5)"/>
+          <circle cx="52" cy="35" r="1.3" fill="rgba(60,36,10,0.5)"/>
+          <circle cx="57" cy="42" r="1.3" fill="rgba(60,36,10,0.5)"/>
+          <circle cx="49" cy="46" r="1.3" fill="rgba(60,36,10,0.5)"/>
+          <circle cx="43" cy="47" r="1.3" fill="rgba(60,36,10,0.5)"/>
+          <circle cx="56" cy="49" r="1.3" fill="rgba(60,36,10,0.5)"/>
+          <circle cx="50" cy="34" r="1.3" fill="rgba(60,36,10,0.5)"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
 
-    <symbol id="tulip" viewBox="0 0 60 150">
-      <path class="stem" pathLength="1" d="M30 150 C 28 118 32 92 30 72" stroke="var(--leaf)" stroke-width="4" fill="none" stroke-linecap="round"/>
-      <g class="leaves">
-        <path d="M30 116 C 10 114 2 97 6 79 C 22 87 30 101 30 116 Z" fill="var(--leaf)"/>
-      </g>
-      <g class="bloom">
-        <path d="M30 44 C 16 50 12 66 20 78 C 24 70 26 56 30 44 Z" fill="var(--rose)" opacity="0.92"/>
-        <path d="M30 44 C 44 50 48 66 40 78 C 36 70 34 56 30 44 Z" fill="var(--rose)" opacity="0.92"/>
-        <path d="M30 40 C 20 55 20 72 30 80 C 40 72 40 55 30 40 Z" fill="var(--rose)"/>
-        <path d="M30 40 C 26 45 26 50 30 53 C 34 50 34 45 30 40 Z" fill="rgba(255,255,255,0.22)"/>
-      </g>
-    </symbol>
-  </defs>
-</svg>
-
-<div class="page">
-  <div class="message">
-    <p>Feliz día, mi amor.</p>
-    <p>Perdóname por no estar hoy a tu lado — la distancia nos separa el cuerpo, pero jamás las ganas de abrazarte.</p>
-    <p>No pude cruzar el mapa para llegarte con flores de verdad, pero no iba a dejarte sin ellas. Así que aquí te las mando, nacidas de un poco de código y regadas con todo lo que siento por ti.</p>
-    <p>Esto es solo una promesa de lo que viene: te llevo una sorpresa para cuando por fin te vea.</p>
-    <p>Mientras tanto, recibe esto que sí te puedo dar ahora mismo, entero, sin distancia de por medio.</p>
-    <p class="final">Te amo ♥</p>
+  <div class="page">
+    <div class="message">
+      <p>Feliz día, mi amor.</p>
+      <p>Perdóname por no estar hoy a tu lado — la distancia nos separa el cuerpo, pero jamás las ganas de abrazarte.</p>
+      <p>No pude cruzar el mapa para llegarte con flores de verdad, pero no iba a dejarte sin ellas. Así que aquí te las mando, nacidas de un poco de código y regadas con todo lo que siento por ti.</p>
+      <p>Esto es solo una promesa de lo que viene: te llevo una sorpresa para cuando por fin te vea.</p>
+      <p>Mientras tanto, recibe esto que sí te puedo dar ahora mismo, entero, sin distancia de por medio.</p>
+      <p class="final">Te amo ♥</p>
+    </div>
   </div>
-</div>
 
-<footer>hecho con paciencia (y un poco de código) para ti</footer>
+  <footer>Hecho con paciencia (y un poco de código) para ti</footer>
 
-<script>
-(function(){
-  function spawnHeart(el){
-    var heart = document.createElement('span');
-    heart.className = 'heart-pop';
-    heart.textContent = '♥';
-    el.appendChild(heart);
-    heart.addEventListener('animationend', function(){ heart.remove(); });
-  }
-  document.querySelectorAll('.bouquet-flower').forEach(function(el){
-    el.addEventListener('click', function(){ spawnHeart(el); });
-  });
-})();
-</script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
