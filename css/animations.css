@@ -53,6 +53,13 @@
   }
 }
 
+@keyframes footerIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes rise {
   from {
     transform: translate(-50%, 0) scale(0.6);

@@ -1,7 +1,9 @@
 /**
- * Computes and assigns the stagger timing for the bouquet's growth sequence:
- * each flower's --d delay, then the paper wrap, ribbon, message and hint
- * delays that must fire after the last flower finishes blooming.
+ * Computes and assigns the stagger timing for the bouquet's growth sequence,
+ * entirely within the hero: each flower's --d delay, then the paper wrap,
+ * ribbon and hint delays that follow the last flower's bloom. The letter and
+ * footer are no longer on this fixed timeline — see js/reveal.js, which
+ * plays them in as the visitor scrolls down to them instead.
  */
 
 const STAGGER = 0.28;
@@ -12,9 +14,7 @@ const PAPER_GAP = 0.2;
 const PAPER_DURATION = 0.9;
 const RIBBON_GAP = 0.1;
 const RIBBON_DURATION = 0.5;
-const MESSAGE_GAP = 0.2;
-const MESSAGE_DURATION = 0.9;
-const HINT_GAP = 0.1;
+const HINT_GAP = 0.15;
 
 function seconds(value) {
   return `${value.toFixed(2)}s`;
@@ -29,7 +29,6 @@ export function initBouquet(root = document) {
     flowers.forEach((el) => el.style.setProperty("--d", "0s"));
     rootStyle.setProperty("--paper-delay", "0s");
     rootStyle.setProperty("--ribbon-delay", "0s");
-    rootStyle.setProperty("--message-delay", "0s");
     rootStyle.setProperty("--hint-delay", "0s");
     return;
   }
@@ -42,12 +41,10 @@ export function initBouquet(root = document) {
   const bloomEnd = lastDelay + BLOOM_OFFSET + BLOOM_DURATION;
   const paperDelay = bloomEnd + PAPER_GAP;
   const ribbonDelay = paperDelay + PAPER_DURATION + RIBBON_GAP;
-  const messageDelay = ribbonDelay + RIBBON_DURATION + MESSAGE_GAP;
-  const hintDelay = messageDelay + MESSAGE_DURATION + HINT_GAP;
+  const hintDelay = ribbonDelay + RIBBON_DURATION + HINT_GAP;
 
   rootStyle.setProperty("--paper-delay", seconds(paperDelay));
   rootStyle.setProperty("--ribbon-delay", seconds(ribbonDelay));
-  rootStyle.setProperty("--message-delay", seconds(messageDelay));
   rootStyle.setProperty("--hint-delay", seconds(hintDelay));
 }
 

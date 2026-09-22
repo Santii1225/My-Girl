@@ -1,6 +1,9 @@
 html {
+  background: var(--color-bg-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
 }
 
@@ -10,10 +13,16 @@ body {
   font-family: var(--font-ui);
   font-size: 16px;
   line-height: 1.5;
+  overflow-x: hidden;
+  /* clears the iPhone notch / Dynamic Island and the home indicator */
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
 }
 
 .page {
-  max-width: 640px;
+  max-width: 680px;
   margin: 0 auto;
   padding: 0 var(--space-5);
 }

@@ -60,8 +60,7 @@
   /* ---- Bouquet sequence timing (set dynamically by js/animation.js) ---- */
   --paper-delay: 2.4s;
   --ribbon-delay: 3.3s;
-  --message-delay: 4s;
-  --hint-delay: 4.5s;
+  --hint-delay: 3.9s;
 
   /* ---- Care (set dynamically by js/watering.js) ---- */
   --growth: 1;

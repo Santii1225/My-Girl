@@ -10,8 +10,8 @@
 .bouquet {
   position: relative;
   z-index: 2;
-  height: clamp(320px, 52vw, 440px);
-  max-width: 460px;
+  height: clamp(320px, 52vw, 480px);
+  max-width: 520px;
   margin: 0 auto;
 }
 
@@ -224,7 +224,7 @@
 .message {
   position: relative;
   z-index: 3;
-  max-width: 560px;
+  max-width: 600px;
   margin: -56px auto 48px;
   background: var(--color-surface-glass);
   backdrop-filter: blur(20px) saturate(160%);
@@ -235,9 +235,10 @@
   box-shadow: var(--shadow-lg);
   text-align: center;
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(24px);
+}
+.message.is-visible {
   animation: msgIn 0.9s var(--ease-out) forwards;
-  animation-delay: var(--message-delay);
 }
 
 .message p {
@@ -267,4 +268,9 @@ footer {
   color: var(--color-ink-soft);
   padding-block: var(--space-2) var(--space-8);
   letter-spacing: 0.04em;
+  opacity: 0;
+  transform: translateY(10px);
+}
+footer.is-visible {
+  animation: footerIn 0.7s var(--ease-out) forwards;
 }
