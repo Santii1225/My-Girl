@@ -4,11 +4,15 @@
  * finishes, the bouquet grows a little more; once it has been watered
  * enough times, the sunflowers settle into a gentle breathing pulse and
  * send up big hearts to show they're well cared for.
+ *
+ * Care is intentionally kept in memory only (not localStorage): every fresh
+ * visit or reload starts the bouquet back at its resting size, so the
+ * watering moment is always there to replay rather than staying maxed out
+ * forever after the first visit.
  */
 
 import { spawnHeart } from "./interactions.js";
 
-const STORAGE_KEY = "girasoles-water-count";
 const MAX_WATERS = 6;
 const GROWTH_MAX = 0.4; // flowers grow up to 40% larger at full care
 const JOURNEY_DURATION = 2600; // ms, must match the canJourney animation duration
@@ -16,24 +20,6 @@ const DROP_TIMES = [0.3, 0.7, 1.1, 1.5, 1.9, 2.3]; // seconds into the journey w
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
-
-function readCount() {
-  try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    const value = raw === null ? 0 : parseInt(raw, 10);
-    return Number.isFinite(value) ? Math.min(Math.max(value, 0), MAX_WATERS) : 0;
-  } catch (err) {
-    return 0;
-  }
-}
-
-function writeCount(count) {
-  try {
-    window.localStorage.setItem(STORAGE_KEY, String(count));
-  } catch (err) {
-    /* private browsing or blocked storage: growth just won't persist */
-  }
 }
 
 function applyGrowth(bouquet, count) {
@@ -98,10 +84,9 @@ export function initWatering(root = document) {
   const bouquet = root.querySelector("#bouquet");
   if (!can || !rig || !bouquet) return;
 
-  let count = readCount();
+  let count = 0;
   let busy = false;
   applyGrowth(bouquet, count);
-  if (count >= MAX_WATERS) bouquet.classList.add("bouquet--loved");
 
   can.addEventListener("click", async () => {
     if (busy) return;
@@ -114,7 +99,6 @@ export function initWatering(root = document) {
     await pourOverBouquet(rig, bouquet, reduced);
 
     count = Math.min(count + 1, MAX_WATERS);
-    writeCount(count);
     applyGrowth(bouquet, count);
 
     if (count >= MAX_WATERS) {
