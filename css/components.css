@@ -13,6 +13,7 @@
   height: clamp(320px, 52vw, 480px);
   max-width: 520px;
   margin: 0 auto;
+  touch-action: manipulation;
 }
 
 .paper-wrap {
@@ -44,9 +45,11 @@
   transition: transform 0.6s var(--ease-spring), filter 0.5s var(--ease-standard);
   z-index: 2;
   will-change: transform;
+  touch-action: manipulation;
 }
 .bouquet-flower:hover,
-.bouquet-flower:focus-visible {
+.bouquet-flower:focus-visible,
+.bouquet-flower.is-touched {
   transform: translateX(-50%) translateX(var(--off)) translateY(-6px) rotate(calc(var(--angle) * 0.7))
     scale(calc(var(--scale) * var(--growth) * 1.05));
   filter: drop-shadow(var(--shadow-glow));
@@ -149,6 +152,7 @@
   border-radius: 999px;
   box-shadow: var(--shadow-sm);
   transition: transform 0.3s var(--ease-standard), box-shadow 0.3s var(--ease-standard);
+  touch-action: manipulation;
 }
 .water-can:hover,
 .water-can:focus-visible {
