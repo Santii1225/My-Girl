@@ -1,0 +1,40 @@
+/**
+ * Mobile-only layout: the hero (the bouquet) and the letter each get a
+ * full screen of their own, with scroll-snap so swiping down lands
+ * cleanly on the fully revealed letter instead of cutting it off
+ * mid-card. Tablet and desktop keep the continuous, overlapping layout
+ * defined in components.css.
+ */
+@media (max-width: 600px) {
+  html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+
+  .scene {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-block: var(--space-6);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .page {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: var(--space-7);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .message {
+    margin: 0 auto;
+  }
+}
